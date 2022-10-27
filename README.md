@@ -1,6 +1,6 @@
 # Dissecting Tensor Cores via Microbenchmarks: Latency, Throughput and Numeric Behaviors
 
-Code repo for Dissecting Tensor Cores via Microbenchmarks: Latency, Throughput and numeric Behaviors.
+Code repo for Dissecting Tensor Cores via Microbenchmarks: Latency, Throughput and Numeric Behaviors.
 
 
 TODO: Provide better instructions and explanations
