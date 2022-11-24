@@ -2,6 +2,8 @@
 
 Code repo for Dissecting Tensor Cores via Microbenchmarks: Latency, Throughput and Numeric Behaviors.
 
+* [preprint](https://arxiv.org/abs/2206.02874)
+* [IEEE TPDS](https://ieeexplore.ieee.org/document/9931992)
 
 TODO: Provide better instructions and explanations
 
@@ -41,5 +43,15 @@ Note, there will be static_assert errors messages when running the scripts, beca
 ## References
 Some codes are borrowed from [Accel-Sim](https://github.com/accel-sim/accel-sim-framework)
 
-
-
+## citations
+```
+@ARTICLE{9931992,
+  author={Sun, Wei and Li, Ang and Geng, Tong and Stuijk, Sander and Corporaal, Henk},
+  journal={IEEE Transactions on Parallel and Distributed Systems}, 
+  title={Dissecting Tensor Cores via Microbenchmarks: Latency, Throughput and Numeric Behaviors}, 
+  year={2023},
+  volume={34},
+  number={1},
+  pages={246-261},
+  doi={10.1109/TPDS.2022.3217824}}
+```
