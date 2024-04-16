@@ -260,7 +260,10 @@ float run(int THREADS_PER_BLOCK, bool report_fma_bw = false) {
     //std::cout << "mma issue bandwidth = " << mma_bw << "(thread/clk/SM)\n";
     std::cout << "mma.sp.sync.aligned.m16n8k64.row.col.f32.e5m2.e5m2.f32  latency " << (float)total_time/(float)ITERS << " cycles\n";
     std::cout << "FMA tensor bandwidth = " << fma_bw + fpuFMA << "(FMA/clk/SM)\n";
-  
+
+    int mps = SM_NUMBER;
+    std::cout << "Dense FP8 tensor throughput = " << CLK_FREQUENCY * 1e-9 * mps * (2 * (fma_bw + fpuFMA)) << " (TeraOP/s) \n";
+
     std::cout << "Total Clk number = " << total_time << "\n";
   
     if (report_fma_bw)
