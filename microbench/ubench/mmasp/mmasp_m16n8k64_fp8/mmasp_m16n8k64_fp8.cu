@@ -262,7 +262,7 @@ float run(int THREADS_PER_BLOCK, bool report_fma_bw = false) {
     std::cout << "FMA tensor bandwidth = " << fma_bw + fpuFMA << "(FMA/clk/SM)\n";
 
     int mps = SM_NUMBER;
-    std::cout << "Dense FP8 tensor throughput = " << CLK_FREQUENCY * 1e-9 * mps * (2 * (fma_bw + fpuFMA)) << " (TeraOP/s) \n";
+    std::cout << "Sparse FP8 tensor throughput = " << CLK_FREQUENCY * 1e-9 * mps * (2 * (fma_bw + fpuFMA)) << " (TeraOP/s) \n";
 
     std::cout << "Total Clk number = " << total_time << "\n";
   
