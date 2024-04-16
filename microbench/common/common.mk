@@ -14,7 +14,7 @@ CUOPTS = $(GENCODE_ARCH) $(GENCODE_SM)
 
 CC := nvcc
 
-CUDA_PATH ?= /use/local/cuda/
+CUDA_PATH ?= /usr/local/cuda/
 INCLUDE := $(CUDA_PATH)/samples/common/inc/
 LIB := 
 ILP ?= 1

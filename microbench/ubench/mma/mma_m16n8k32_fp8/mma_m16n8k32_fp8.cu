@@ -246,6 +246,9 @@ float run(int THREADS_PER_BLOCK, bool report_fma_bw = false) {
     std::cout << "mma.sync.aligned.m16n8k32.row.col.f32.e5m2.e5m2.f32 latency " << (float)total_time/(float)ITERS << " cycles\n";
     std::cout << "FMA tensor bandwidth = " << fma_bw + fpuFMA << "(FMA/clk/SM)\n";
   
+    int mps = SM_NUMBER;
+    std::cout << "Dense FP8 tensor throughput = " << CLK_FREQUENCY * 1e-9 * mps * (2 * (fma_bw + fpuFMA)) << " (TeraOP/s) \n";
+
     std::cout << "Total Clk number = " << total_time << "\n";
   
     if (report_fma_bw)
@@ -256,6 +259,21 @@ float run(int THREADS_PER_BLOCK, bool report_fma_bw = false) {
 
 int main() {
     intilizeDeviceProp(0);
+    
+    int dev = 0;
+    cudaSetDevice(dev);
+    cudaGetDeviceProperties(&deviceProp, dev);
+    if (deviceProp.major < 8)
+        printf("only runs on Ampere and up, right now.. could be made to run on Turing on some benches\n");
+    int adaplus = 1;
+    if ((deviceProp.major == 8) && (deviceProp.minor < 9))
+    {
+        int adaplus = 0;
+        printf("no testing on Ada+, FP8 tests skipped.. \n");
+        return -1;
+    }
+    printf("Device %d: \"%s\" %d MPs/SMs @ %0.2f GHz L2 cache: %d MB\n", dev, deviceProp.name, deviceProp.multiProcessorCount,deviceProp.clockRate*1e-6f,deviceProp.l2CacheSize/1024/1024);
+
     std::cout<<"***********************************"<<std::endl;
     std::cout << "mma.sync.aligned.m16n8k32.row.col.f32.e5m2.e5m2.f32 microbenchmark with ILP = " << ILPconfig << std::endl;
     for(int i = 1; i <= 32; i = i*2){
