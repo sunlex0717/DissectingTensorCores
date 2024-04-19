@@ -5,15 +5,16 @@ GENCODE_SM70 ?= -gencode=arch=compute_70,code=\"sm_70,compute_70\" # V100
 GENCODE_SM75 ?= -gencode=arch=compute_75,code=\"sm_75,compute_75\" # Turing
 GENCODE_SM80 ?= -gencode=arch=compute_80,code=\"sm_80,compute_80\" # A100
 GENCODE_SM86 ?= -gencode=arch=compute_86,code=\"sm_86,compute_86\" # RTX30
+GENCODE_SM89 ?= -gencode=arch=compute_86,code=\"sm_89,compute_89\" # RTX30
 
 
-TargetSM ?= 80
+TargetSM ?= 89
 GENCODE_SM = -gencode=arch=compute_${TargetSM},code=\"sm_${TargetSM},compute_${TargetSM}\"
 CUOPTS = $(GENCODE_ARCH) $(GENCODE_SM) 
 
 CC := nvcc
 
-CUDA_PATH ?= /use/local/cuda-10.2/
+CUDA_PATH ?= /usr/local/cuda/
 INCLUDE := $(CUDA_PATH)/samples/common/inc/
 LIB := 
 ILP ?= 1

@@ -76,14 +76,16 @@ __global__ void tensr1688_flops(uint64_t *startClk, uint64_t *stopClk, half *a, 
   asm volatile("mov.u64 %0, %%clock64;" : "=l"(start)::"memory");
   //#pragma unroll
   for (int j = 0; j < ITERS; ++j) {
+  #if 0
     asm volatile(
         "mma.sync.aligned.m8n8k4.row.col.f32.f16.f16.f32 "
-        "{%0,%1,%2,%3}, {%4,%5}, {%6}, {%7,%8,%9,%10};\n"
+        "{%0,%1,%2,%3}, {%4,%5,%6,%7}, {%8,%9,%10,%11}, {%12,%13,%14,%15};\n"
         : "=f"(D[0]), "=f"(D[1]), "=f"(D[2]), "=f"(D[3])
-        : "r"(A[0]), "r"(A[1]), 
-          "r"(B[0]), 
+        : "r"(A[0]), "r"(A[1]), "r"(A[2]), "r"(A[3]),
+          "r"(B[0]), "r"(B[1]), "r"(B[2]), "r"(B[3]), 
           "f"(C[0]), "f"(C[1]), "f"(C[2]), "f"(C[3])
     ); 
+    #endif
     #if (ILPconfig >= 2) 
     asm volatile(
       "mma.sync.aligned.m16n8k8.row.col.f32.f16.f16.f32 "

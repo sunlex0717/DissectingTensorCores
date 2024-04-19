@@ -2,7 +2,7 @@
 #define DEVICE_QUERY_H
 
 #include <cuda_runtime.h>
-
+unsigned CLK_FREQUENCY;
 unsigned SM_NUMBER;           // number of SMs
 unsigned WARP_SIZE;           // max threads per warp
 unsigned MAX_THREADS_PER_SM;  // max threads / sm
@@ -35,6 +35,7 @@ unsigned intilizeDeviceProp(unsigned deviceID) {
   cudaSetDevice(deviceID);
   cudaGetDeviceProperties(&deviceProp, deviceID);
 
+  CLK_FREQUENCY = deviceProp.clockRate;
   // core stats
   SM_NUMBER = deviceProp.multiProcessorCount;
   MAX_THREADS_PER_SM = deviceProp.maxThreadsPerMultiProcessor;
